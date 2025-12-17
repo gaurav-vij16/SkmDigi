@@ -1,17 +1,15 @@
 @import "tailwindcss";
 
+/* ============================= */
+/*        THEME VARIABLES        */
+/* ============================= */
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* Dark mode */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -19,8 +17,88 @@
   }
 }
 
+/* ============================= */
+/*          BASE STYLES          */
+/* ============================= */
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* ============================= */
+/*        MASVIS FONT UTIL       */
+/* ============================= */
+
+/* Use for headings */
+.font-masvis {
+  font-family: var(--font-masvis), sans-serif;
+}
+
+/* Optional: auto-apply to headings */
+
+/* h1, h2, h3 {
+  font-family: var(--font-masvis), sans-serif;
+} */
+
+
+/* ============================= */
+/*        CLIENT SLIDER          */
+/* ============================= */
+
+/* Outer background */
+.slider-bg {
+  background: #ffffff;
+}
+
+/* Main slider wrapper */
+.slider {
+  width: 100%;
+  overflow: hidden;
+  padding: 1rem 0;
+  position: relative;
+}
+
+/* Horizontal track */
+.slide-track {
+  display: flex;
+  gap: 3em;
+  width: max-content;
+}
+
+/* Each slide wrapper */
+.slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Logo images */
+.slide-img {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  animation: slide-scroll 40s linear infinite;
+  transition: transform 0.3s ease;
+}
+
+/* Pause animation on hover */
+.slider:hover .slide-img {
+  animation-play-state: paused;
+}
+
+/* Zoom effect on hover */
+.slide-img:hover {
+  transform: scale(1.5);
+}
+
+/* Infinite smooth scroll */
+@keyframes slide-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-1200%);
+  }
 }

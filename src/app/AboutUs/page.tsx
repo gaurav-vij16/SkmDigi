@@ -1,0 +1,140 @@
+"use client";
+
+import Image from "next/image";
+import { motion } from "framer-motion";
+import ContactFormUi from "../Components/ui/ContactFormUi";
+
+import aboutUsImg from "../../../public/AboutUsImg.jpg";
+import About1 from "../../../public/About1.jpg";
+import About2 from "../../../public/About2.jpg";
+import About3 from "../../../public/About3.jpg";
+
+export default function AboutUs() {
+  return (
+    <div className="w-full bg-white text-gray-900 overflow-hidden">
+
+      {/* ================= HERO ================= */}
+      <section className="pt-32 pb-24">
+        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+
+          {/* TEXT */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+          >
+            <h1 className="font-masvis text-5xl md:text-6xl font-extrabold leading-tight">
+              Built by <span className="text-orange-500">Founders</span>
+              <br />
+              For <span className="text-orange-500">Founders</span>
+            </h1>
+
+            <p className="mt-6 text-lg md:text-xl text-gray-600 max-w-xl leading-relaxed">
+              Whether you're an early-stage startup looking to validate your
+              product or an established business aiming to unlock the next level
+              of growth — we design marketing strategies that deliver real
+              business outcomes.
+            </p>
+          </motion.div>
+
+          {/* IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="relative h-[420px] rounded-3xl overflow-hidden shadow-2xl"
+          >
+            <Image
+              src={aboutUsImg}
+              alt="About SKM Digi"
+              fill
+              priority
+              className="object-cover object-center"
+            />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ================= STATS ================= */}
+      <section className="bg-gray-50 py-20">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-12 text-center">
+          {[
+            { value: "120+", label: "Clients Served" },
+            { value: "6+", label: "Countries" },
+            { value: "5+ Years", label: "Growth Marketing Experience" },
+          ].map((stat, i) => (
+            <div key={i}>
+              <p className="text-4xl md:text-5xl font-extrabold text-orange-500">
+                {stat.value}
+              </p>
+              <p className="mt-2 text-gray-600 font-medium">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ================= WHO ARE WE ================= */}
+      <section className="py-28 relative">
+        <div className="absolute inset-0 bg-linear-to-br from-orange-50 via-white to-transparent -z-10" />
+
+        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-start">
+
+          {/* ZIGZAG IMAGES */}
+          <div className="relative grid grid-cols-2 gap-6 max-h-[520px]">
+            <div className="relative h-[220px] rounded-2xl overflow-hidden shadow-xl">
+              <Image src={About1} alt="Team culture" fill className="object-cover" />
+            </div>
+
+            <div className="relative h-[260px] rounded-2xl overflow-hidden shadow-xl translate-y-10">
+              <Image src={About3} alt="Team brainstorming" fill className="object-cover" />
+            </div>
+
+            <div className="relative col-span-2 h-[200px] rounded-2xl overflow-hidden shadow-xl -translate-y-4">
+              <Image src={About2} alt="Team collaboration" fill className="object-cover" />
+            </div>
+          </div>
+
+          {/* CONTENT */}
+          <div>
+            <h2 className="font-masvis text-4xl md:text-5xl font-extrabold mb-14">
+              Who <span className="text-orange-500">are we?</span>
+            </h2>
+
+            <div className="space-y-10">
+              {[
+                {
+                  title: "Number-Crunching Maniacs",
+                  text: "We live in dashboards, breathe performance metrics, and obsess over data until every click turns into measurable impact.",
+                },
+                {
+                  title: "Creative Mavericks",
+                  text: "We blend trends, storytelling, and instinct to craft scroll-stopping ideas that don’t just look good — they perform.",
+                },
+                {
+                  title: "Unshakable Strategists",
+                  text: "We don’t rest until the plan is perfect. We test, tweak, and stick to what actually delivers results.",
+                },
+                {
+                  title: "Obsessed Growth Specialists",
+                  text: "Scaling brands is our adrenaline. From smart funnels to sharp campaigns — we chase growth like it’s a full-time sport.",
+                },
+              ].map((item, i) => (
+                <div key={i} className="relative pl-6">
+                  <span className="absolute left-0 top-2 h-full w-[3px] bg-orange-500 rounded-full" />
+                  <h3 className="font-masvis text-xl md:text-2xl font-bold text-orange-500">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-gray-600 leading-relaxed text-lg">
+                    {item.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <ContactFormUi />
+    </div>
+  );
+}
