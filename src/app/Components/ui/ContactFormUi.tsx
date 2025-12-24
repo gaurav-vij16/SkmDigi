@@ -1,8 +1,90 @@
 "use client";
 
+import { useState, ChangeEvent, FormEvent } from "react";
+
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  message: string;
+  services: string[];
+}
+
+const SERVICES = [
+  "Performance Marketing",
+  "Social Media Marketing",
+  "Email Marketing",
+  "SEO",
+  "Affiliate Marketing",
+  "Content Production",
+];
+
 export default function ContactFormUi() {
+  const [formData, setFormData] = useState<FormData>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: "",
+    services: [],
+  });
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleCheckboxChange = (service: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      services: prev.services.includes(service)
+        ? prev.services.filter((s) => s !== service)
+        : [...prev.services, service],
+    }));
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const fd = new FormData();
+    fd.append("firstName", formData.firstName);
+    fd.append("lastName", formData.lastName);
+    fd.append("email", formData.email);
+    fd.append("message", formData.message);
+    fd.append("services", formData.services.join(", "));
+
+    try {
+      const res = await fetch(
+        "https://script.google.com/macros/s/AKfycbwcUz8UK9kL__X-GPeLCdUe1UPsRkNiNNUEODqW1xlKGKFmTE-mZ0isNC_vyHQYVFE0/exec",
+        {
+          method: "POST",
+          body: fd,
+        }
+      );
+
+      const data = JSON.parse(await res.text());
+
+      if (data.status === "success") {
+        alert("Form submitted successfully!");
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          message: "",
+          services: [],
+        });
+      } else {
+        alert("Submission failed");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong");
+    }
+  };
+
   return (
-    <section className="py-32 bg-white relative">
+    <section className="py-32 bg-white">
       <div className="max-w-4xl mx-auto px-6">
         {/* Heading */}
         <div className="text-center mb-20">
@@ -10,98 +92,91 @@ export default function ContactFormUi() {
             Get in <span className="text-orange-500">Touch</span>
           </h1>
           <p className="mt-6 text-lg text-gray-600 max-w-xl mx-auto">
-            Let’s talk about your brand, your goals, and how we can scale
-            together.
+            Let’s talk about your brand, your goals, and how we can scale together.
           </p>
         </div>
 
         {/* Form */}
-        <form className="space-y-12">
-          {/* Name Fields */}
+        <form onSubmit={handleSubmit} className="space-y-10">
+          {/* Name */}
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                First Name<span className="text-orange-500">*</span>
+              <label className="block mb-2 text-sm font-medium text-gray-700">
+                First Name <span className="text-orange-500">*</span>
               </label>
               <input
-                type="text"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
                 placeholder="Your first name"
-                className="w-full rounded-2xl border border-gray-300 px-5 py-4
-                  focus:outline-none focus:ring-2 focus:ring-orange-500
-                  transition"
+                required
+                className="w-full rounded-2xl border border-gray-300 px-5 py-4 focus:ring-2 focus:ring-orange-500 outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Last Name<span className="text-orange-500">*</span>
+              <label className="block mb-2 text-sm font-medium text-gray-700">
+                Last Name <span className="text-orange-500">*</span>
               </label>
               <input
-                type="text"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
                 placeholder="Your last name"
-                className="w-full rounded-2xl border border-gray-300 px-5 py-4
-                  focus:outline-none focus:ring-2 focus:ring-orange-500
-                  transition"
+                required
+                className="w-full rounded-2xl border border-gray-300 px-5 py-4 focus:ring-2 focus:ring-orange-500 outline-none"
               />
             </div>
           </div>
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Email<span className="text-orange-500">*</span>
+            <label className="block mb-2 text-sm font-medium text-gray-700">
+              Email Address <span className="text-orange-500">*</span>
             </label>
             <input
               type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
               placeholder="you@company.com"
-              className="w-full rounded-2xl border border-gray-300 px-5 py-4
-                focus:outline-none focus:ring-2 focus:ring-orange-500
-                transition"
+              required
+              className="w-full rounded-2xl border border-gray-300 px-5 py-4 focus:ring-2 focus:ring-orange-500 outline-none"
             />
           </div>
 
           {/* Message */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Message<span className="text-orange-500">*</span>
+            <label className="block mb-2 text-sm font-medium text-gray-700">
+              Message <span className="text-orange-500">*</span>
             </label>
             <textarea
+              name="message"
               rows={5}
+              value={formData.message}
+              onChange={handleChange}
               placeholder="Tell us about your project..."
-              className="w-full rounded-2xl border border-gray-300 px-5 py-4
-                focus:outline-none focus:ring-2 focus:ring-orange-500
-                resize-none transition"
+              required
+              className="w-full rounded-2xl border border-gray-300 px-5 py-4 focus:ring-2 focus:ring-orange-500 outline-none resize-none"
             />
           </div>
 
           {/* Services */}
           <div>
-            <p className="text-sm font-medium text-gray-700 mb-5">
+            <p className="mb-4 text-sm font-medium text-gray-700">
               Services you’re interested in
             </p>
-
             <div className="flex flex-wrap gap-4">
-              {[
-                "Performance Marketing",
-                "Social Media Marketing",
-                "Email Marketing",
-                "SEO",
-                "Affiliate Marketing",
-                "Content Production",
-              ].map((service, i) => (
+              {SERVICES.map((service) => (
                 <label
-                  key={i}
-                  className="
-                    flex items-center gap-3 px-5 py-3
-                    border border-gray-300 rounded-full
-                    cursor-pointer
-                    hover:border-orange-500
-                    transition
-                  "
+                  key={service}
+                  className="flex items-center gap-3 px-5 py-3 border border-gray-300 rounded-full cursor-pointer hover:border-orange-500 transition"
                 >
                   <input
                     type="checkbox"
-                    className="w-4 h-4 accent-orange-500"
+                    checked={formData.services.includes(service)}
+                    onChange={() => handleCheckboxChange(service)}
+                    className="accent-orange-500"
                   />
                   <span className="text-sm text-gray-700">{service}</span>
                 </label>
@@ -110,21 +185,12 @@ export default function ContactFormUi() {
           </div>
 
           {/* Submit */}
-          <div className="pt-10">
-            <button
-              type="submit"
-              className="
-                w-full rounded-2xl
-                bg-orange-500 text-white
-                py-4 text-lg font-semibold
-                hover:bg-orange-600
-                hover:-translate-y-2px
-                transition-all duration-300
-              "
-            >
-              Send Message
-            </button>
-          </div>
+          <button
+            type="submit"
+            className="w-full rounded-2xl bg-orange-500 text-white py-4 text-lg font-semibold hover:bg-orange-600 transition"
+          >
+            Send Message
+          </button>
         </form>
       </div>
     </section>

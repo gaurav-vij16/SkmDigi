@@ -26,7 +26,7 @@ const services = [
 
 export default function ServicesCircleSlider() {
   return (
-    <section className="pt-16 pb-24 bg-white relative overflow-hidden">
+    <section className="pt-2 pb-24 bg-white relative overflow-hidden">
       {/* soft background accent */}
       <div className="absolute inset-0 bg-linear-to-b from-orange-50/60 via-white to-white -z-10" />
 

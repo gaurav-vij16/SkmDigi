@@ -10,6 +10,9 @@ export default function ClientUi() {
     "/clients/c5.png",
     "/clients/c6.webp",
     "/clients/c7.jpg",
+    "/clients/c8.jpg",
+    "/clients/c9.png",
+    "/clients/c10.webp",
   ];
 
   const repeatedClients = [...clients, ...clients, ...clients];
