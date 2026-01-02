@@ -3,11 +3,9 @@
 import Image from "next/image";
 import BgImg from "../../../../public/BgImg.jpg";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import ClientUi from "./ClientUi";
 import { useRouter } from "next/navigation";
 
 export default function LandingUi() {
-
   const router = useRouter();
 
   return (
@@ -17,8 +15,8 @@ export default function LandingUi() {
         src={BgImg}
         alt="Background"
         fill
-        className="object-cover object-center"
         priority
+        className="object-cover object-center"
       />
 
       {/* DARK OVERLAY */}
@@ -34,28 +32,22 @@ export default function LandingUi() {
             Powered by Our Expertise
           </h1>
 
-          <p className="mt-6 text-white/85 text-lg leading-relaxed max-w-xl">
+          <p className="mt-6 text-lg leading-relaxed max-w-xl text-white/85">
             SKM DIGI drives growth with innovation, strategy, and lasting impact.
           </p>
 
           <button
-            className="relative overflow-hidden mt-8 w-fit
-              px-9 py-4 rounded-xl
-              bg-linear-to-r from-orange-500 to-orange-700
-              text-white font-semibold tracking-wide
-              shadow-xl transition-all duration-300 hover:scale-105"
+            onClick={() => router.push("/ContactUs")}
+            className="relative overflow-hidden mt-8 w-fit px-9 py-4 rounded-xl bg-linear-to-r from-orange-500 to-orange-700 text-white font-semibold tracking-wide shadow-xl transition-all duration-300 hover:scale-105"
           >
-            <span onClick={()=>router.push('/ContactUs')} className="relative z-10">Let’s Discuss</span>
-            <span
-              className="absolute inset-0 bg-white/20 -translate-x-full skew-x-12
-              transition-transform duration-500 ease-out hover:translate-x-[200%]"
-            />
+            <span className="relative z-10">Let’s Discuss</span>
+            <span className="absolute inset-0 bg-white/20 -translate-x-full skew-x-12 transition-transform duration-500 ease-out hover:translate-x-[200%]" />
           </button>
         </div>
 
         {/* RIGHT FEATURE BOX */}
         <div className="w-full md:w-[380px] rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-7 shadow-xl">
-          <h3 className="font-masvis text-orange-400 text-xl mb-5 tracking-wider">
+          <h3 className="font-masvis text-xl mb-5 tracking-wider text-orange-400">
             FEATURED SERVICES
           </h3>
 
@@ -68,8 +60,7 @@ export default function LandingUi() {
             ].map((service, index) => (
               <div
                 key={index}
-                className="flex justify-between items-center text-white/85 cursor-pointer
-                  hover:text-white transition-all duration-200"
+                className="flex justify-between items-center cursor-pointer text-white/85 transition-all duration-200 hover:text-white"
               >
                 <span className="tracking-wide">{service}</span>
                 <MdKeyboardArrowRight className="text-xl" />
@@ -77,11 +68,7 @@ export default function LandingUi() {
             ))}
           </div>
 
-          <div
-            className="mt-7 pt-5 border-t border-white/20 flex justify-between items-center
-              cursor-pointer text-orange-400 font-semibold tracking-wide
-              hover:text-orange-300 transition"
-          >
+          <div className="mt-7 pt-5 border-t border-white/20 flex justify-between items-center cursor-pointer font-semibold tracking-wide text-orange-400 transition hover:text-orange-300">
             <span className="text-lg">Explore All Services</span>
             <MdKeyboardArrowRight className="text-3xl" />
           </div>

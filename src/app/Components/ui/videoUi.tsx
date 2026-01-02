@@ -29,8 +29,8 @@ export default function VideoCarousel() {
   };
 
   return (
-    <div className="w-full py-24 bg-linear-to-b from-white via-orange-50/40 to-orange-100/60">
-      <h2 className="font-masvis text-4xl font-extrabold text-center text-orange-700 mb-14 tracking-wide">
+    <div className="w-full py-14 bg-linear-to-b from-white via-orange-50/40 to-orange-100/60">
+      <h2 className="font-masvis text-4xl font-extrabold text-center text-orange-500 mb-6 tracking-wide">
         Client Videos
       </h2>
 

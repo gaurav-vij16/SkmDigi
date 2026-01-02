@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -25,25 +26,33 @@ const services = [
 ];
 
 export default function ServicesCircleSlider() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null; // ⛑️ hydration fix
+
   return (
-    <section className="pt-2 pb-24 bg-white relative overflow-hidden">
-      {/* soft background accent */}
-      <div className="absolute inset-0 bg-linear-to-b from-orange-50/60 via-white to-white -z-10" />
+    <section className="relative overflow-hidden bg-white pt-2 pb-24">
+      {/* Background accent */}
+      <div className="absolute inset-0 -z-10 bg-linear-to-b from-orange-50/60 via-white to-white" />
 
       {/* Heading */}
-      <div className="text-center mb-12">
+      <div className="mb-12 text-center">
         <h2 className="font-masvis text-4xl md:text-6xl text-gray-900">
           Our <span className="text-orange-500">Services</span>
         </h2>
 
-        <p className="mt-6 text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        <p className="mx-auto mt-6 max-w-2xl text-lg md:text-xl text-gray-600 leading-relaxed">
           End-to-end digital marketing solutions designed to scale brands with
           precision and creativity.
         </p>
       </div>
 
       {/* Slider */}
-      <div className="w-full max-w-7xl mx-auto px-4">
+      <div className="mx-auto w-full max-w-7xl px-4">
         <Swiper
           modules={[Navigation, Autoplay]}
           navigation
@@ -62,21 +71,14 @@ export default function ServicesCircleSlider() {
             const Icon = service.icon;
             return (
               <SwiperSlide key={i} className="flex justify-center">
-                <div className="group flex flex-col items-center text-center cursor-pointer transition-all duration-500">
+                <div className="group flex cursor-pointer flex-col items-center text-center transition-all duration-500">
                   {/* Circle */}
-                  <div
-                    className="w-28 h-28 rounded-full flex items-center justify-center
-                    bg-linear-to-br from-orange-500 to-orange-700
-                    text-white shadow-xl
-                    transition-all duration-500
-                    group-hover:scale-110
-                    group-hover:shadow-orange-400/40"
-                  >
-                    <Icon className="w-14 h-14" strokeWidth={1.5} />
+                  <div className="flex h-28 w-28 items-center justify-center rounded-full bg-linear-to-r from-orange-500 to-red-500 shadow-lg transition-transform duration-500 group-hover:scale-110">
+                    <Icon className="h-14 w-14 text-white" strokeWidth={1.5} />
                   </div>
 
                   {/* Title */}
-                  <h3 className="mt-5 text-lg font-semibold text-gray-800 tracking-wide group-hover:text-orange-600 transition">
+                  <h3 className="mt-5 text-lg font-semibold tracking-wide text-gray-800 transition group-hover:text-orange-600">
                     {service.title}
                   </h3>
                 </div>
@@ -87,13 +89,10 @@ export default function ServicesCircleSlider() {
       </div>
 
       {/* CTA */}
-      <div className="text-center mt-14">
+      <div className="mt-14 text-center">
         <a
           href="/Services"
-          className="inline-block font-semibold tracking-wide
-          text-gray-900 hover:text-orange-600
-          border-b-2 border-transparent hover:border-orange-500
-          transition-all duration-300"
+          className="inline-block font-semibold tracking-wide text-gray-900 transition-all duration-300 hover:text-orange-600 border-b-2 border-transparent hover:border-orange-500"
         >
           View All Services →
         </a>

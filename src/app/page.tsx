@@ -6,6 +6,7 @@ import GrowthSection from "./Components/ui/Growth";
 import Testimonials from "./Components/ui/Testimonial";
 import ContactFormUi from "./Components/ui/ContactFormUi";
 import VideoCarousel from "./Components/ui/videoUi";
+import FAQs from "./Components/ui/FAQs";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <VideoCarousel/>
       {/* <Testimonials/> */}
       <GrowthSection/>
+      <FAQs/>
       <section className="relative bg-white z-20 text-black">
             <ContactFormUi />
           </section>
