@@ -121,10 +121,10 @@ export default function OtherServices() {
                   </p>
 
                   {/* CTA */}
-                  <div className="flex items-center gap-2 text-orange-400 opacity-0 transition-all duration-300 group-hover:opacity-100">
+                  {/* <div className="flex items-center gap-2 text-orange-400 opacity-0 transition-all duration-300 group-hover:opacity-100">
                     <span className="font-medium">Explore</span>
                     <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             );

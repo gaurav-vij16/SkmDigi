@@ -48,7 +48,6 @@ export default function RootLayout({
         <main className="pt-[88px] min-h-screen">
           {children}
         </main>
-
         <Footer />
       </body>
     </html>
