@@ -10,25 +10,30 @@ export default function LandingUi() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
 
+  // Ensures no hydration error
   useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
 
-  if (!mounted) return null; // avoids hydration error
+  const featuredServices = [
+    "Performance Marketing",
+    "Influencer Marketing",
+    "Web Design & Development",
+    "Talent Management",
+  ];
 
   return (
     <section className="relative w-full min-h-screen overflow-hidden">
       {/* BACKGROUND IMAGE */}
-      <div className="relative w-full h-full">
-        <Image
-          src={BgImg}
-          alt="Background"
-          fill
-          priority
-          className="object-cover object-center"
-        />
+      <Image
+        src={BgImg}
+        alt="Background"
+        fill
+        priority
+        className="object-cover object-center"
+      />
 
-        {/* CINEMATIC DARK OVERLAY */}
-        <div className="absolute inset-0 bg-linear-to-br from-black/80 via-black/60 to-black/90" />
-      </div>
+      {/* CINEMATIC DARK OVERLAY */}
+      <div className="absolute inset-0 bg-linear-to-br from-black/80 via-black/60 to-black/90" />
 
       {/* CONTENT */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pt-44 pb-24 flex flex-col md:flex-row justify-between gap-16">
@@ -61,6 +66,7 @@ export default function LandingUi() {
                         bg-black/40 backdrop-blur-xl
                         border border-orange-500/40
                         p-7 shadow-[0_0_40px_rgba(249,115,22,0.45)]">
+
           {/* GLOW BORDER */}
           <div className="absolute inset-0 rounded-2xl ring-1 ring-orange-500/30 pointer-events-none" />
 
@@ -69,12 +75,7 @@ export default function LandingUi() {
           </h3>
 
           <div className="flex flex-col gap-5">
-            {[
-              "Performance Marketing",
-              "Influencer Marketing",
-              "Web Design & Development",
-              "Talent Management",
-            ].map((service, index) => (
+            {featuredServices.map((service, index) => (
               <div
                 key={index}
                 className="flex justify-between items-center cursor-pointer 
