@@ -18,7 +18,6 @@ import {
 } from "lucide-react";
 
 /* ---------------- SERVICES MENU DATA ---------------- */
-
 const services = [
   { title: "Social Media Marketing", slug: "social-media-marketing", icon: Megaphone },
   { title: "Affiliate Marketing", slug: "affiliate-marketing", icon: Users },
@@ -43,7 +42,7 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ================= NAVBAR ================= */}
+      {/* ================= NAVBAR (WHITE) ================= */}
       <nav className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
         <div className="max-w-7xl mx-auto h-[88px] px-6 flex items-center justify-between">
           <div onClick={() => router.push("/")} className="cursor-pointer">
@@ -54,21 +53,10 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-8">
             <div className="flex gap-4">
               <a href="https://www.instagram.com/skmdigimedia" target="_blank">
-                <FaInstagram className="text-xl text-gray-700 hover:text-red-600 hover:scale-125 transition" />
+                <FaInstagram className="text-xl text-gray-700 hover:text-pink-500 hover:scale-125 transition" />
               </a>
-              <FaLinkedin className="text-xl text-gray-700 hover:text-blue-600 hover:scale-125 transition" />
+              <FaLinkedin className="text-xl text-gray-700 hover:text-blue-500 hover:scale-125 transition" />
             </div>
-
-            {/* <div
-              onClick={() => router.push("/Career")}
-              className="flex items-center gap-2 cursor-pointer text-gray-700 font-medium"
-            >
-              <span>We are Hiring!</span>
-              <span className="relative flex h-3 w-3">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75 animate-ping"></span>
-                <span className="relative inline-flex h-3 w-3 rounded-full bg-green-600"></span>
-              </span>
-            </div> */}
 
             <motion.button
               whileHover={{ scale: 1.1 }}
@@ -91,54 +79,69 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* ================= SIDEBAR ================= */}
+      {/* ================= DARK SIDEBAR ================= */}
       <AnimatePresence>
         {isOpen && (
           <>
+            {/* Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.4 }}
+              animate={{ opacity: 0.5 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
               className="fixed inset-0 bg-black z-40"
             />
 
+            {/* Sidebar */}
             <motion.aside
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.25 }}
-              className="fixed top-0 right-0 h-full w-[260px] z-50 p-6 bg-linear-to-b from-[#E8B44F] to-[#D59F20] text-white flex flex-col shadow-2xl"
+              className="fixed top-0 right-0 h-full w-[280px] z-50 p-6 bg-linear-to-b from-[#0f172a] via-[#1e293b] to-[#334155] text-gray-100 flex flex-col shadow-2xl"
             >
+              {/* Close + Social */}
               <div className="flex justify-between items-center mb-6">
-                <button onClick={() => setIsOpen(false)} className="text-2xl">✕</button>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="text-2xl hover:text-orange-500 transition"
+                >
+                  ✕
+                </button>
                 <div className="flex gap-4 text-xl">
-                  <FaInstagram />
-                  <FaLinkedin />
+                  <FaInstagram className="hover:text-pink-500 transition" />
+                  <FaLinkedin className="hover:text-blue-500 transition" />
                 </div>
               </div>
 
-              <a href="mailto:info@skmdigi.com" className="underline mb-6">
+              {/* Contact */}
+              <a
+                href="mailto:info@skmdigi.com"
+                className="underline mb-6 text-gray-300 hover:text-white transition"
+              >
                 info@skmdigi.com
               </a>
 
-              <div className="border-t border-white/30 mb-6" />
+              <div className="border-t border-gray-700 mb-6" />
 
-              <ul className="flex flex-col gap-5 text-lg">
-
-
-                {/* SERVICES */}
+              {/* Navigation */}
+              <ul className="flex flex-col gap-5 text-lg font-medium">
+                {/* Services Dropdown */}
                 <li>
                   <div className="flex justify-between items-center">
                     <Link
                       href="/Services"
                       onClick={() => setIsOpen(false)}
+                      className="hover:text-orange-400 transition relative group"
                     >
                       Services
+                      <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-orange-400 group-hover:w-full transition-all"></span>
                     </Link>
 
                     <button onClick={() => setServiceOpen(!serviceOpen)}>
-                      <span className={`transition ${serviceOpen ? "rotate-180" : ""}`}>
+                      <span
+                        className={`transition-transform ${serviceOpen ? "rotate-180" : ""}`}
+                      >
                         ⌃
                       </span>
                     </button>
@@ -160,9 +163,9 @@ export default function Navbar() {
                                 setIsOpen(false);
                                 setServiceOpen(false);
                               }}
-                              className="flex items-center gap-2 hover:text-orange-900"
+                              className="flex items-center gap-2 hover:text-orange-400 transition"
                             >
-                              <item.icon size={16} />
+                              <item.icon size={16} className="text-gray-300 group-hover:text-orange-400 transition" />
                               {item.title}
                             </Link>
                           </li>
@@ -172,17 +175,24 @@ export default function Navbar() {
                   </AnimatePresence>
                 </li>
 
+                {/* Other Nav Links */}
                 {navLinks.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.path} onClick={() => setIsOpen(false)}>
+                    <Link
+                      href={link.path}
+                      onClick={() => setIsOpen(false)}
+                      className="hover:text-orange-400 transition relative group"
+                    >
                       {link.label}
+                      <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-orange-400 group-hover:w-full transition-all"></span>
                     </Link>
                   </li>
                 ))}
               </ul>
 
-              <div className="mt-auto text-xs opacity-80">
-                <div className="border-t border-white/30 mb-4" />
+              {/* Footer */}
+              <div className="mt-auto text-xs text-gray-400 opacity-80">
+                <div className="border-t border-gray-700 mb-4" />
                 © SKM DIGI — All Rights Reserved.
               </div>
             </motion.aside>

@@ -2,7 +2,7 @@
 
 import { useState, ChangeEvent, FormEvent } from "react";
 
-interface FormData {
+interface ContactFormData {
   firstName: string;
   lastName: string;
   email: string;
@@ -20,7 +20,7 @@ const SERVICES = [
 ];
 
 export default function ContactFormUi() {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<ContactFormData>({
     firstName: "",
     lastName: "",
     email: "",
@@ -57,13 +57,10 @@ export default function ContactFormUi() {
     try {
       const res = await fetch(
         "https://script.google.com/macros/s/AKfycbwcUz8UK9kL__X-GPeLCdUe1UPsRkNiNNUEODqW1xlKGKFmTE-mZ0isNC_vyHQYVFE0/exec",
-        {
-          method: "POST",
-          body: fd,
-        }
+        { method: "POST", body: fd }
       );
 
-      const data = JSON.parse(await res.text());
+      const data = await res.json();
 
       if (data.status === "success") {
         alert("Form submitted successfully!");
@@ -77,22 +74,26 @@ export default function ContactFormUi() {
       } else {
         alert("Submission failed");
       }
-    } catch (error) {
-      console.error(error);
+    } catch {
       alert("Something went wrong");
     }
   };
 
   return (
-    <section className="py-32 bg-white">
-      <div className="max-w-4xl mx-auto px-6">
+    <section className="relative py-32 bg-linear-to-b from-orange-50 via-white to-white overflow-hidden">
+      {/* Soft accent blobs */}
+      <div className="absolute -top-32 -left-32 w-[420px] h-[420px] bg-orange-200/40 blur-[120px] rounded-full" />
+      <div className="absolute top-1/2 -right-32 w-[360px] h-[360px] bg-pink-200/40 blur-[120px] rounded-full" />
+
+      {/* Card */}
+      <div className="relative max-w-4xl mx-auto px-10 py-16 rounded-4xl bg-white/70 backdrop-blur-xl border border-orange-200 shadow-[0_40px_80px_rgba(255,120,0,0.15)]">
         {/* Heading */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-16">
           <h1 className="font-masvis text-4xl md:text-5xl lg:text-6xl text-gray-900">
-            Get in <span className="text-orange-500">Touch</span>
+            Let’s Grow Your <span className="text-orange-500">Brand</span>
           </h1>
-          <p className="mt-6 text-lg text-gray-600 max-w-xl mx-auto">
-            Let’s talk about your brand, your goals, and how we can scale together.
+          <p className="mt-5 text-lg text-gray-600 max-w-xl mx-auto">
+            Performance-driven marketing strategies built for scale.
           </p>
         </div>
 
@@ -100,33 +101,22 @@ export default function ContactFormUi() {
         <form onSubmit={handleSubmit} className="space-y-10">
           {/* Name */}
           <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <label className="block mb-2 text-sm font-medium text-gray-700">
-                First Name <span className="text-orange-500">*</span>
-              </label>
-              <input
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                placeholder="Your first name"
-                required
-                className="w-full rounded-2xl border border-gray-300 px-5 py-4 focus:ring-2 focus:ring-orange-500 outline-none"
-              />
-            </div>
-
-            <div>
-              <label className="block mb-2 text-sm font-medium text-gray-700">
-                Last Name <span className="text-orange-500">*</span>
-              </label>
-              <input
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                placeholder="Your last name"
-                required
-                className="w-full rounded-2xl border border-gray-300 px-5 py-4 focus:ring-2 focus:ring-orange-500 outline-none"
-              />
-            </div>
+            {["firstName", "lastName"].map((field, idx) => (
+              <div key={field}>
+                <label className="block mb-2 text-sm font-medium text-gray-700">
+                  {idx === 0 ? "First Name" : "Last Name"}{" "}
+                  <span className="text-orange-500">*</span>
+                </label>
+                <input
+                  name={field}
+                  value={formData[field as keyof ContactFormData]}
+                  onChange={handleChange}
+                  required
+                  placeholder={`Your ${idx === 0 ? "first" : "last"} name`}
+                  className="w-full rounded-xl bg-white border border-gray-300 px-5 py-4 text-gray-900 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/30 outline-none transition"
+                />
+              </div>
+            ))}
           </div>
 
           {/* Email */}
@@ -139,9 +129,9 @@ export default function ContactFormUi() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="you@company.com"
               required
-              className="w-full rounded-2xl border border-gray-300 px-5 py-4 focus:ring-2 focus:ring-orange-500 outline-none"
+              placeholder="you@company.com"
+              className="w-full rounded-xl bg-white border border-gray-300 px-5 py-4 text-gray-900 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/30 outline-none transition"
             />
           </div>
 
@@ -151,13 +141,13 @@ export default function ContactFormUi() {
               Message <span className="text-orange-500">*</span>
             </label>
             <textarea
-              name="message"
               rows={5}
+              name="message"
               value={formData.message}
               onChange={handleChange}
-              placeholder="Tell us about your project..."
               required
-              className="w-full rounded-2xl border border-gray-300 px-5 py-4 focus:ring-2 focus:ring-orange-500 outline-none resize-none"
+              placeholder="Tell us about your goals..."
+              className="w-full rounded-xl bg-white border border-gray-300 px-5 py-4 text-gray-900 resize-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/30 outline-none transition"
             />
           </div>
 
@@ -170,7 +160,7 @@ export default function ContactFormUi() {
               {SERVICES.map((service) => (
                 <label
                   key={service}
-                  className="flex items-center gap-3 px-5 py-3 border border-gray-300 rounded-full cursor-pointer hover:border-orange-500 transition"
+                  className="flex items-center gap-3 px-5 py-3 rounded-full cursor-pointer bg-white border border-gray-300 hover:border-orange-500 transition"
                 >
                   <input
                     type="checkbox"
@@ -184,12 +174,12 @@ export default function ContactFormUi() {
             </div>
           </div>
 
-          {/* Submit */}
+          {/* CTA */}
           <button
             type="submit"
-            className="w-full rounded-2xl bg-orange-500 text-white py-4 text-lg font-semibold hover:bg-orange-600 transition"
+            className="w-full py-4 rounded-xl text-lg font-semibold text-white bg-linear-to-r from-orange-500 to-black shadow-md hover:shadow-lg hover:scale-[1.02] transition-all"
           >
-            Send Message
+            Get Started →
           </button>
         </form>
       </div>

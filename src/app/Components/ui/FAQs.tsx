@@ -34,7 +34,7 @@ export default function FAQs() {
   const [active, setActive] = useState<number | null>(0);
 
   return (
-    <section className="bg-black px-4 py-28">
+    <section className="bg-orange-500/10 px-4 py-28">
       <div className="mx-auto max-w-7xl">
         <h2 className="mb-20 text-6xl font-bold text-white">FAQs</h2>
 

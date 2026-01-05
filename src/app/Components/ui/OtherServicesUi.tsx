@@ -60,17 +60,21 @@ const services: ServiceItem[] = [
 export default function OtherServices() {
   return (
     <section className="relative overflow-hidden py-28">
-      {/* background accent */}
-      <div className="absolute inset-0 -z-10 bg-linear-to-b from-orange-500/10 via-transparent to-transparent" />
+      {/* Section background */}
+      <div className="absolute inset-0 -z-20 bg-linear-to-b from-[#1a120c] via-[#120e0b] to-[#0e0b09]" />
+
+      {/* Soft orange ambient glow */}
+      <div className="pointer-events-none absolute left-1/2 top-32 -z-10 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-orange-500/20 blur-[140px]" />
 
       <div className="mx-auto max-w-7xl px-6">
         {/* Heading */}
         <div className="mb-20 text-center">
-          <h2 className="font-masvis text-4xl tracking-wide text-white md:text-5xl lg:text-6xl">
-            Beyond <span className="text-orange-500">Influencer Marketing</span>
+          <h2 className="font-masvis text-4xl tracking-wide text-white drop-shadow-[0_2px_20px_rgba(255,140,0,0.25)] md:text-5xl lg:text-6xl">
+            Beyond{" "}
+            <span className="text-orange-500">Influencer Marketing</span>
           </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-400">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-300">
             We extend brand storytelling beyond creators — delivering immersive
             experiences, talent-driven content, and culture-led campaigns.
           </p>
@@ -84,24 +88,24 @@ export default function OtherServices() {
             return (
               <div
                 key={idx}
-                className="group relative overflow-hidden rounded-3xl border border-orange-500/25 bg-white/5 p-8 backdrop-blur-xl shadow-[0_0_40px_rgba(255,140,0,0.15)] transition-all duration-500 hover:-translate-y-3"
+                className="group relative overflow-hidden rounded-3xl border border-orange-500/20 bg-white/10 p-8 backdrop-blur-xl shadow-[0_0_60px_rgba(255,165,0,0.18)] transition-all duration-500 hover:-translate-y-3"
               >
                 {/* Background image */}
                 <Image
                   src={service.bg}
                   alt={service.title}
                   fill
-                  className="object-cover opacity-25 transition-opacity duration-500 group-hover:opacity-35"
+                  className="object-cover opacity-35 transition-all duration-500 group-hover:opacity-45"
                 />
 
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/60" />
+                {/* Soft overlay (not dark) */}
+                <div className="absolute inset-0 bg-linear-to-br from-black/30 via-black/10 to-orange-900/20" />
 
                 {/* Content */}
                 <div className="relative z-10">
                   {/* Icon */}
                   <div
-                    className={`mb-6 flex h-16 w-16 items-center justify-center rounded-full text-white shadow-md transition-transform duration-300 group-hover:scale-110 ${service.iconBg}`}
+                    className={`mb-6 flex h-16 w-16 items-center justify-center rounded-full text-white shadow-lg transition-transform duration-300 group-hover:scale-110 ${service.iconBg}`}
                   >
                     <Icon className="h-8 w-8" strokeWidth={1.5} />
                   </div>
@@ -112,7 +116,7 @@ export default function OtherServices() {
                   </h3>
 
                   {/* Description */}
-                  <p className="mb-8 leading-relaxed text-gray-300">
+                  <p className="mb-8 leading-relaxed text-gray-200">
                     {service.description}
                   </p>
 
