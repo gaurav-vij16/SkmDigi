@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import BgImg from "../../../../public/BgImg.jpg";
+import BgImg from "../../../../public/SKMBg.png";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useRouter } from "next/navigation";
 

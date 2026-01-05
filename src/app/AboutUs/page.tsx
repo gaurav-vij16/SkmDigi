@@ -30,9 +30,9 @@ export default function AboutUs() {
             </h1>
 
             <p className="mt-6 text-lg md:text-xl text-gray-600 max-w-xl leading-relaxed">
-              Whether you're an early-stage startup looking to validate your
+              Whether you're an early stage startup looking to validate your
               product or an established business aiming to unlock the next level
-              of growth — we design marketing strategies that deliver real
+              of growth, we design marketing strategies that deliver real
               business outcomes.
             </p>
           </motion.div>
@@ -80,61 +80,86 @@ export default function AboutUs() {
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-start">
 
           {/* ZIGZAG IMAGES */}
-          <div className="relative grid grid-cols-2 gap-6 max-h-[520px]">
-            <div className="relative h-[220px] rounded-2xl overflow-hidden shadow-xl">
+          <div className="relative grid grid-cols-2 gap-6 max-h-[540px]">
+            <motion.div
+              whileHover={{ scale: 1.05, rotate: 1 }}
+              transition={{ duration: 0.5 }}
+              className="relative h-[220px] rounded-2xl overflow-hidden shadow-2xl z-20 hover:shadow-3xl"
+            >
               <Image src={About1} alt="Team culture" fill className="object-cover" />
-            </div>
+            </motion.div>
 
-            <div className="relative h-[260px] rounded-2xl overflow-hidden shadow-xl translate-y-10">
+            <motion.div
+              whileHover={{ scale: 1.05, rotate: -1 }}
+              transition={{ duration: 0.5 }}
+              className="relative h-[260px] rounded-2xl overflow-hidden shadow-2xl translate-y-12 z-30 hover:shadow-3xl"
+            >
               <Image src={About3} alt="Team brainstorming" fill className="object-cover" />
-            </div>
+            </motion.div>
 
-            <div className="relative col-span-2 h-[200px] rounded-2xl overflow-hidden shadow-xl -translate-y-4">
+            <motion.div
+              whileHover={{ scale: 1.05, rotate: 0 }}
+              transition={{ duration: 0.5 }}
+              className="relative col-span-2 h-[200px] rounded-2xl overflow-hidden shadow-2xl -translate-y-6 z-10 hover:shadow-3xl"
+            >
               <Image src={About2} alt="Team collaboration" fill className="object-cover" />
-            </div>
+            </motion.div>
           </div>
 
           {/* CONTENT */}
-          <div>
+          <div className="space-y-12">
             <h2 className="font-masvis text-4xl md:text-5xl font-extrabold mb-14">
               Who <span className="text-orange-500">are we?</span>
             </h2>
 
-            <div className="space-y-10">
-              {[
-                {
-                  title: "Number-Crunching Maniacs",
-                  text: "We live in dashboards, breathe performance metrics, and obsess over data until every click turns into measurable impact.",
-                },
-                {
-                  title: "Creative Mavericks",
-                  text: "We blend trends, storytelling, and instinct to craft scroll-stopping ideas that don’t just look good — they perform.",
-                },
-                {
-                  title: "Unshakable Strategists",
-                  text: "We don’t rest until the plan is perfect. We test, tweak, and stick to what actually delivers results.",
-                },
-                {
-                  title: "Obsessed Growth Specialists",
-                  text: "Scaling brands is our adrenaline. From smart funnels to sharp campaigns — we chase growth like it’s a full-time sport.",
-                },
-              ].map((item, i) => (
-                <div key={i} className="relative pl-6">
-                  <span className="absolute left-0 top-2 h-full w-[3px] bg-orange-500 rounded-full" />
-                  <h3 className="font-masvis text-xl md:text-2xl font-bold text-orange-500">
+            {[
+              {
+                title: "Number  Crunching  Maniacs",
+                text: "We live in dashboards, breathe performance metrics, and obsess over data until every click turns into measurable impact.",
+              },
+              {
+                title: "Creative  Mavericks",
+                text: "We blend trends, storytelling, and instinct to craft scroll-stopping ideas that don’t just look good — they perform.",
+              },
+              {
+                title: "Unshakable  Strategists",
+                text: "We don’t rest until the plan is perfect. We test, tweak, and stick to what actually delivers results.",
+              },
+              {
+                title: "Obsessed  Growth  Specialists",
+                text: "Scaling brands is our adrenaline. From smart funnels to sharp campaigns — we chase growth like it’s a full-time sport.",
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="grid grid-cols-[1fr_20px] gap-6 items-start relative"
+              >
+                {/* TEXT CONTENT */}
+                <div>
+                  <h3 className="font-masvis text-xl md:text-2xl font-bold text-orange-500 leading-relaxed ">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-gray-600 leading-relaxed text-lg">
+
+                  <p className="text-gray-600 text-lg leading-relaxed">
                     {item.text}
                   </p>
+
                 </div>
-              ))}
-            </div>
+
+                {/* ORANGE LINE */}
+                <div className="relative flex justify-center">
+                  <span className="block h-full w-1 bg-orange-500 rounded-full shadow-md" />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <ContactFormUi />
+      {/* ================= CONTACT FORM ================= */}
+      <section className="py-20 bg-gray-50">
+        <ContactFormUi />
+      </section>
     </div>
   );
 }

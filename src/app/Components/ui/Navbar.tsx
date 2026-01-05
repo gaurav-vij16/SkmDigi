@@ -33,8 +33,6 @@ export default function Navbar() {
   const router = useRouter();
 
   const navLinks = [
-    { label: "Home", path: "/" },
-    { label: "Case Study", path: "/CaseStudy" },
     { label: "About Us", path: "/AboutUs" },
     { label: "Contact Us", path: "/ContactUs" },
     { label: "Career", path: "/Career" },
@@ -191,10 +189,13 @@ export default function Navbar() {
               </ul>
 
               {/* Footer */}
-              <div className="mt-auto text-xs text-gray-400 opacity-80">
-                <div className="border-t border-gray-700 mb-4" />
+              {/* Footer */}
+              <div className="mt-auto text-xs  transition-colors duration-300 text-white font-bold">
+                <div className="border-t border-gray-700 transition-colors duration-300 mb-4 group-hover:border-orange-500"></div>
                 © SKM DIGI — All Rights Reserved.
               </div>
+
+
             </motion.aside>
           </>
         )}

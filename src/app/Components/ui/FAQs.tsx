@@ -10,7 +10,7 @@ const faqs = [
   },
   {
     q: "Who will create this content exactly?",
-    a: "We have an in-house team of social media experts who will create your content end-to-end — research, scripting, shooting and editing.",
+    a: "We have an in house team of social media experts who will create your content end to end  research, scripting, shooting and editing.",
   },
   {
     q: "How long will it take to start posting content on my page?",

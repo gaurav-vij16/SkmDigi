@@ -10,7 +10,6 @@ import { FaInstagram, FaLinkedin } from "react-icons/fa";
 const quickLinks = [
   { label: "About Us", href: "/AboutUs" },
   { label: "Services", href: "/Services" },
-  { label: "Case Studies", href: "/CaseStudy" },
   { label: "Contact Us", href: "/ContactUs" },
   { label: "Careers", href: "/Career" },
 ];
@@ -37,7 +36,7 @@ export default function Footer() {
 
           <p className="text-gray-600 text-sm leading-relaxed max-w-[220px] mt-3">
             SKM DIGI drives growth with creativity, innovation, and
-            performance-driven digital strategies built for modern brands.
+            performance driven digital strategies built for modern brands.
           </p>
 
           <div className="flex gap-4 text-2xl text-gray-700 mt-5">
@@ -105,7 +104,7 @@ export default function Footer() {
           </h3>
 
           <p className="text-gray-700 mb-4 italic">
-            — Over a cup of hot or cold brew, maybe?
+            Over a cup of hot or cold brew, maybe?
           </p>
 
           <p className="text-gray-700 mb-6">
@@ -128,8 +127,8 @@ export default function Footer() {
             </Link>
           </div>
 
-          <p className="text-gray-700">
-            Or email us at{" "}
+          <p className="text-gray-700 font-bold">
+             Email us at{" "}
             <a
               href="mailto:info@skmdigi.com"
               className="text-orange-500 hover:underline"

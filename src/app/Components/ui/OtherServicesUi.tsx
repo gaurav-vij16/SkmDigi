@@ -27,7 +27,7 @@ const services: ServiceItem[] = [
     icon: Zap,
     title: "Digital Events & IP Design",
     description:
-      "From corporate shows to concerts, we curate experiences and artists that elevate brand-led events and original IPs.",
+      "From corporate shows to concerts, we curate experiences and artists that elevate brand led events and original IPs.",
     iconBg: "bg-linear-to-br from-orange-400 to-pink-500",
     bg: digital,
   },
@@ -35,7 +35,7 @@ const services: ServiceItem[] = [
     icon: UsersRound,
     title: "Workshops & Engagements",
     description:
-      "Sales, leadership, or culture — we design workshops that blend insight, interaction, and impact.",
+      "Sales, leadership, or culture  we design workshops that blend insight, interaction, and impact.",
     iconBg: "bg-linear-to-br from-orange-400 to-yellow-400",
     bg: workshop,
   },
@@ -43,7 +43,7 @@ const services: ServiceItem[] = [
     icon: MonitorSmartphone,
     title: "Onboarding & Casting",
     description:
-      "From web series to branded content, our in-house casting and onboarding teams find talent that fits your vision.",
+      "From web series to branded content, our in house casting and onboarding teams find talent that fits your vision.",
     iconBg: "bg-linear-to-br from-purple-400 to-indigo-500",
     bg: onboard,
   },
@@ -51,7 +51,7 @@ const services: ServiceItem[] = [
     icon: Megaphone,
     title: "Meme Marketing",
     description:
-      "High-reach meme pages and creators combined with sharp strategy to deliver viral, brand-safe growth.",
+      "High reach meme pages and creators combined with sharp strategy to deliver viral, brand safe growth.",
     iconBg: "bg-linear-to-br from-green-400 to-teal-500",
     bg: Meme,
   },
@@ -75,8 +75,8 @@ export default function OtherServices() {
           </h2>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-300">
-            We extend brand storytelling beyond creators — delivering immersive
-            experiences, talent-driven content, and culture-led campaigns.
+            We extend brand storytelling beyond creators  delivering immersive
+            experiences, talent driven content, and culture led campaigns.
           </p>
         </div>
 

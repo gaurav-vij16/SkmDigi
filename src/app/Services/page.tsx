@@ -28,7 +28,7 @@ const services = [
     icon: Megaphone,
     image: SocialMediaImg,
     description:
-      "We build scroll-stopping social media strategies that turn attention into action. From content planning to community growth, we help brands dominate feeds and convert followers into loyal customers.",
+      "We build scroll stopping social media strategies that turn attention into action. From content planning to community growth, we help brands dominate feeds and convert followers into loyal customers.",
     stats: [
       { value: "4.2x", label: "Engagement Growth" },
       { value: "1M+", label: "Monthly Reach" },
@@ -41,7 +41,7 @@ const services = [
     icon: Users,
     image: AffilateMarketingImg,
     description:
-      "Our affiliate systems are designed to scale revenue without scaling costs. We onboard high-quality partners, track performance in real time, and optimize payouts for maximum ROI.",
+      "Our affiliate systems are designed to scale revenue without scaling costs. We onboard high quality partners, track performance in real time, and optimize payouts for maximum ROI.",
     stats: [
       { value: "35%", label: "Avg Revenue Lift" },
       { value: "300+", label: "Active Affiliates" },
@@ -54,7 +54,7 @@ const services = [
     icon: Search,
     image: SeoImg,
     description:
-      "We don’t chase rankings — we chase qualified traffic. Our SEO approach focuses on technical excellence, high-intent keywords, and sustainable growth that compounds month after month.",
+      "We don’t chase rankings, we chase qualified traffic. Our SEO approach focuses on technical excellence, high intent keywords, and sustainable growth that compounds month after month.",
     stats: [
       { value: "180%", label: "Organic Traffic" },
       { value: "90+", label: "Top-3 Keywords" },
@@ -67,7 +67,7 @@ const services = [
     icon: MonitorSmartphone,
     image: PerformanceImg,
     description:
-      "Performance-driven paid campaigns engineered for scale. From creatives to conversion tracking, we optimize every touchpoint to deliver measurable, profitable growth.",
+      "Performance driven paid campaigns engineered for scale. From creatives to conversion tracking, we optimize every touchpoint to deliver measurable, profitable growth.",
     stats: [
       { value: "5.1x", label: "Avg ROAS" },
       { value: "$500k+", label: "Ad Spend Managed" },
@@ -80,7 +80,7 @@ const services = [
     icon: Mail,
     image: EmailMarketingImg,
     description:
-      "From welcome flows to retention sequences, we craft emails that feel personal and perform consistently — driving repeat purchases and long-term customer value.",
+      "From welcome flows to retention sequences, we craft emails that feel personal and perform consistently, driving repeat purchases and long term customer value.",
     stats: [
       { value: "42%", label: "Open Rate" },
       { value: "18%", label: "CTR Increase" },
@@ -93,7 +93,7 @@ const services = [
     icon: Camera,
     image: ContentProductionImg,
     description:
-      "High-impact content built to convert. We create visuals, videos, and ad creatives that capture attention fast and communicate brand value instantly.",
+      "High impact content built to convert. We create visuals, videos, and ad creatives that capture attention fast and communicate brand value instantly.",
     stats: [
       { value: "250+", label: "Creatives Delivered" },
       { value: "3x", label: "Ad Recall Lift" },
@@ -157,7 +157,7 @@ export default function ServicesPage() {
         <h1 className="font-masvis text-4xl md:text-5xl lg:text-6xl">
           Our <span className="text-orange-500">Services</span>
         </h1>
-        <p className="mt-6 max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed">
+        <p className="mt-6 max-w-4xl mx-auto text-lg text-gray-600 leading-relaxed">
           Powerful digital solutions designed to drive sustainable, measurable
           growth for modern brands.
         </p>

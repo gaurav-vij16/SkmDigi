@@ -13,7 +13,7 @@ export const services = [
   },
   {
     title: "Content Marketing",
-    description: "Create high-quality content that engages and converts.",
+    description: "Create high quality content that engages and converts.",
     icon: FaChartLine,
   },
   {

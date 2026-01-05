@@ -17,8 +17,9 @@ export default function Home() {
       <OtherServices/>
       <VideoCarousel/>
       {/* <Testimonials/> */}
-      <GrowthSection/>
       <FAQs/>
+      <GrowthSection/>
+      
       <section className="relative bg-white z-20 text-black">
             <ContactFormUi />
           </section>

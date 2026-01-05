@@ -5,6 +5,7 @@ import "./globals.css";
 
 import Navbar from "./Components/ui/Navbar";
 import Footer from "./Components/ui/Footer";
+import { Toaster } from "react-hot-toast"; // ✅ Import Toaster
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +40,9 @@ export default function RootLayout({
         `}
       >
         <Navbar />
+
+        {/* Global Toaster */}
+        <Toaster position="top-right" reverseOrder={false} />
 
         {/* Main content offset for fixed navbar */}
         <main className="pt-[88px] min-h-screen">
