@@ -85,18 +85,28 @@ export default function Career() {
             required
           />
           <label className="flex flex-col items-start">
-            <span className="text-gray-700 font-medium mb-1">Upload Resume</span>
+            <span className="text-gray-700 font-medium mb-2">Upload Resume</span>
+
+            {/* Hidden native file input */}
             <input
               type="file"
               name="resume"
               accept=".pdf,.doc,.docx"
               onChange={handleChange}
-              className="w-full text-gray-900 font-medium border border-gray-300 rounded-xl p-2 cursor-pointer focus:outline-none focus:border-orange-400"
+              className="hidden"
+              id="resume-upload"
             />
-            {formData.resume && (
-              <p className="mt-1 text-sm text-gray-500">{formData.resume.name}</p>
-            )}
+
+            {/* Custom button */}
+            <button
+              type="button"
+              onClick={() => document.getElementById("resume-upload")?.click()}
+              className="w-full text-gray-900 font-medium border border-gray-300 rounded-xl p-2 hover:border-orange-400 hover:bg-orange-50 transition"
+            >
+              {formData.resume ? formData.resume.name : "Select Resume"}
+            </button>
           </label>
+
 
           <button
             type="submit"
