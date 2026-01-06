@@ -15,74 +15,86 @@ export default function GrowthSection() {
   const [counts, setCounts] = useState<number[]>(
     Array(stats.length).fill(0)
   );
+  const [mounted, setMounted] = useState(false);
+
+  // Prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
-    const duration = 1400;
-    const frames = 60;
+    if (!mounted) return;
+
+    const duration = 1200;
 
     stats.forEach((stat, index) => {
-      let frame = 0;
-      const counter = setInterval(() => {
-        frame++;
-        const progress = Math.min(frame / frames, 1);
+      const start = performance.now();
+
+      const animate = (now: number) => {
+        const progress = Math.min((now - start) / duration, 1);
+
         setCounts((prev) => {
           const copy = [...prev];
           copy[index] = Math.floor(stat.value * progress);
           return copy;
         });
-        if (frame >= frames) clearInterval(counter);
-      }, duration / frames);
+
+        if (progress < 1) requestAnimationFrame(animate);
+      };
+
+      requestAnimationFrame(animate);
     });
-  }, []);
+  }, [mounted]);
 
   return (
-    <section className="relative py-32 overflow-hidden bg-linear-to-b from-orange-50 via-white to-white">
-      {/* Ambient blobs */}
-      <div className="absolute -top-32 -left-32 w-[420px] h-[420px] bg-orange-300/30 blur-[120px] rounded-full" />
-      <div className="absolute bottom-0 -right-32 w-[360px] h-[360px] bg-pink-300/30 blur-[120px] rounded-full" />
+    <section className="relative py-20 sm:py-28 overflow-hidden bg-linear-to-b from-orange-50 via-white to-white">
+      {/* Ambient blobs (safe for mobile) */}
+      <div className="absolute -top-40 -left-40 w-[320px] h-80 sm:w-[420px] sm:h-[420px] bg-orange-300/30 blur-[120px] rounded-full" />
+      <div className="absolute bottom-0 -right-40 w-[300px] h-[300px] sm:w-[360px] sm:h-[360px] bg-pink-300/30 blur-[120px] rounded-full" />
 
       {/* Heading */}
-      <div className="relative z-10 text-center mb-20 px-6">
-        <h2 className="font-masvis text-4xl md:text-5xl lg:text-6xl text-gray-900">
+      <div className="relative z-10 text-center mb-14 sm:mb-20 px-4">
+        <h2 className="font-masvis text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900">
           Growth That <span className="text-orange-500">Speaks</span>
         </h2>
 
-        <p className="mt-6 max-w-xl mx-auto text-lg text-gray-600">
+        <p className="mt-4 sm:mt-6 max-w-xl mx-auto text-base sm:text-lg text-gray-600">
           Real metrics. Real impact. Real brand momentum.
         </p>
       </div>
 
       {/* Stats */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
         {stats.map((item, index) => (
           <div
             key={item.label}
             className="
               group relative
-              rounded-3xl p-10
+              rounded-2xl sm:rounded-3xl
+              p-6 sm:p-10
               bg-white/70 backdrop-blur-xl
               border border-orange-200
-              shadow-[0_30px_60px_rgba(255,120,0,0.15)]
-              hover:-translate-y-4 hover:shadow-[0_40px_80px_rgba(255,120,0,0.25)]
+              shadow-[0_20px_40px_rgba(255,120,0,0.15)]
+              hover:-translate-y-3 hover:shadow-[0_35px_70px_rgba(255,120,0,0.25)]
               transition-all duration-500
             "
           >
             {/* Accent line */}
-            <div className="absolute top-0 left-0 w-full h-1 rounded-t-3xl bg-linear-to-r from-orange-500 to-pink-500" />
+            <div className="absolute top-0 left-0 w-full h-1 rounded-t-2xl sm:rounded-t-3xl bg-linear-to-r from-orange-500 to-pink-500" />
 
             {/* Number */}
-            <div className="text-5xl md:text-6xl font-extrabold tracking-tight bg-linear-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
-              {counts[index].toLocaleString()}
+            <div className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight bg-linear-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
+              {mounted ? counts[index].toLocaleString() : "0"}
               <span className="ml-1">{item.suffix}</span>
             </div>
 
             {/* Label */}
-            <p className="mt-4 text-gray-700 text-lg font-medium">
+            <p className="mt-3 sm:mt-4 text-gray-700 text-base sm:text-lg font-medium">
               {item.label}
             </p>
 
-            {/* Micro glow */}
-            <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none bg-linear-to-br from-orange-400/10 to-transparent" />
+            {/* Hover glow */}
+            <div className="absolute inset-0 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none bg-linear-to-br from-orange-400/10 to-transparent" />
           </div>
         ))}
       </div>

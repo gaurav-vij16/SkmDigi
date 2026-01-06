@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 
 const faqs = [
@@ -28,6 +28,13 @@ const faqs = [
 
 export default function FAQs() {
   const [active, setActive] = useState<number | null>(0);
+  const [mounted, setMounted] = useState(false); // Avoid hydration error
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null; // Prevent hydration errors
 
   const cardClass =
     "relative overflow-hidden rounded-2xl border border-orange-500/30 bg-white/5 backdrop-blur-xl shadow-[0_0_40px_rgba(255,140,0,0.15)] transition-all duration-500";
@@ -36,7 +43,8 @@ export default function FAQs() {
     "text-orange-400 transition-transform duration-300" + (open ? " rotate-180" : "");
 
   const answerClass = (open: boolean) =>
-    "relative overflow-hidden px-7 transition-all duration-500" + (open ? " max-h-40 pb-7" : " max-h-0");
+    "relative overflow-hidden px-5 sm:px-7 transition-all duration-500" +
+    (open ? " max-h-80 pb-5 sm:pb-7" : " max-h-0");
 
   // Group FAQs: first 4 in pairs, last one separately
   const rows = [
@@ -46,16 +54,18 @@ export default function FAQs() {
   ];
 
   return (
-    <section className="bg-orange-500/10 px-4 py-28">
+    <section className="bg-orange-500/10 px-4 py-16 sm:py-28">
       <div className="mx-auto max-w-7xl">
-        <h2 className="mb-20 text-6xl font-bold text-white">FAQs</h2>
+        <h2 className="mb-12 sm:mb-20 text-4xl sm:text-6xl font-bold text-white text-center sm:text-left">
+          FAQs
+        </h2>
 
-        <div className="space-y-12">
+        <div className="space-y-6 sm:space-y-12">
           {rows.map((row, rowIndex) => (
             <div
               key={rowIndex}
-              className={`grid grid-cols-1 gap-8 ${
-                row.length === 2 ? "md:grid-cols-2" : "md:grid-cols-1"
+              className={`grid grid-cols-1 gap-4 sm:gap-8 ${
+                row.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-1"
               }`}
             >
               {row.map((item, index) => {
@@ -70,9 +80,9 @@ export default function FAQs() {
                     {/* Question */}
                     <button
                       onClick={() => setActive(open ? null : globalIndex)}
-                      className="relative flex w-full items-start justify-between p-7 text-left"
+                      className="relative flex w-full items-start justify-between p-5 sm:p-7 text-left"
                     >
-                      <h3 className="text-xl font-semibold leading-snug text-white">
+                      <h3 className="text-lg sm:text-xl font-semibold leading-snug text-white">
                         {item.q}
                       </h3>
                       <ChevronDown size={26} className={arrowClass(open)} />
@@ -80,9 +90,8 @@ export default function FAQs() {
 
                     {/* Answer */}
                     <div className={answerClass(open)}>
-                      <p className="text-[15px] leading-relaxed text-gray-300">
-                        <span className="font-semibold text-orange-400">a.</span>{" "}
-                        {item.a}
+                      <p className="text-sm sm:text-[15px] leading-relaxed text-gray-300">
+                        <span className="font-semibold text-orange-400">a.</span> {item.a}
                       </p>
                     </div>
                   </div>

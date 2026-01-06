@@ -10,7 +10,6 @@ export default function LandingUi() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
 
-  // Ensures no hydration error
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
 
@@ -36,22 +35,22 @@ export default function LandingUi() {
       <div className="absolute inset-0 bg-linear-to-br from-black/80 via-black/60 to-black/90" />
 
       {/* CONTENT */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pt-44 pb-24 flex flex-col md:flex-row justify-between gap-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 pt-32 sm:pt-44 pb-20 sm:pb-24 flex flex-col md:flex-row justify-between gap-12 md:gap-16">
         {/* LEFT CONTENT */}
         <div className="flex flex-col max-w-2xl text-white">
-          <h1 className="font-masvis text-4xl md:text-6xl leading-tight tracking-tight">
+          <h1 className="font-masvis text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight">
             Your <span className="text-orange-500">Growth.</span>
             <br />
             Powered by Our Expertise
           </h1>
 
-          <p className="mt-6 text-lg leading-relaxed max-w-xl text-white/80">
+          <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-relaxed max-w-xl text-white/80">
             SKM DIGI drives growth with innovation, strategy, and lasting impact.
           </p>
 
           <button
             onClick={() => router.push("/ContactUs")}
-            className="relative mt-9 w-fit px-10 py-4 rounded-xl 
+            className="relative mt-6 sm:mt-9 w-fit px-8 sm:px-10 py-3 sm:py-4 rounded-xl 
                        bg-linear-to-r from-orange-500 to-orange-600
                        text-white font-semibold tracking-wide
                        shadow-[0_20px_60px_rgba(249,115,22,0.6)]
@@ -65,35 +64,35 @@ export default function LandingUi() {
         <div className="relative w-full md:w-[380px] rounded-2xl 
                         bg-black/40 backdrop-blur-xl
                         border border-orange-500/40
-                        p-7 shadow-[0_0_40px_rgba(249,115,22,0.45)]">
+                        p-5 sm:p-7 shadow-[0_0_40px_rgba(249,115,22,0.45)]">
 
           {/* GLOW BORDER */}
           <div className="absolute inset-0 rounded-2xl ring-1 ring-orange-500/30 pointer-events-none" />
 
-          <h3 className="font-masvis text-xl mb-6 tracking-widest text-orange-400">
+          <h3 className="font-masvis text-lg sm:text-xl mb-5 sm:mb-6 tracking-widest text-orange-400">
             FEATURED SERVICES
           </h3>
 
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-4 sm:gap-5">
             {featuredServices.map((service, index) => (
               <div
                 key={index}
                 className="flex justify-between items-center cursor-pointer 
                            text-white/85 transition-all duration-200 
-                           hover:text-orange-400"
+                           hover:text-orange-400 text-sm sm:text-base"
               >
                 <span className="tracking-wide">{service}</span>
-                <MdKeyboardArrowRight className="text-2xl" />
+                <MdKeyboardArrowRight className="text-xl sm:text-2xl" />
               </div>
             ))}
           </div>
 
-          <div className="mt-7 pt-5 border-t border-orange-500/30
+          <div className="mt-5 sm:mt-7 pt-4 sm:pt-5 border-t border-orange-500/30
                           flex justify-between items-center cursor-pointer
                           font-semibold tracking-wide text-orange-400
-                          transition hover:text-orange-300">
-            <span className="text-lg">Explore All Services</span>
-            <MdKeyboardArrowRight className="text-3xl" />
+                          transition hover:text-orange-300 text-sm sm:text-base">
+            <span>Explore All Services</span>
+            <MdKeyboardArrowRight className="text-2xl sm:text-3xl" />
           </div>
         </div>
       </div>

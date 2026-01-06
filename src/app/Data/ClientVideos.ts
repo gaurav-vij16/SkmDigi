@@ -27,12 +27,19 @@ export const clientVideos = [
     thumbnail:
       "https://res.cloudinary.com/dveh4evhy/video/upload/so_2.5/Ankitaa_cgtowk.jpg",
   },
+//   {
+//     title: "Akash – UGC Video",
+//     videoUrl:
+//       "https://res.cloudinary.com/dveh4evhy/video/upload/q_auto,f_auto/Akash_s_UGC_zrqqwf.mp4",
+//     thumbnail:
+//       "https://res.cloudinary.com/dveh4evhy/video/upload/so_2.5/Akash_s_UGC_zrqqwf.jpg",
+//   },
   {
-    title: "Akash – UGC Video",
+    title: "Abhishek – Client Video",
     videoUrl:
-      "https://res.cloudinary.com/dveh4evhy/video/upload/q_auto,f_auto/Akash_s_UGC_zrqqwf.mp4",
+      "https://res.cloudinary.com/dveh4evhy/video/upload/q_auto,f_auto/Abhishek_ceeeax.mp4",
     thumbnail:
-      "https://res.cloudinary.com/dveh4evhy/video/upload/so_2.5/Akash_s_UGC_zrqqwf.jpg",
+      "https://res.cloudinary.com/dveh4evhy/video/upload/so_2.5/Abhishek_ceeeax.jpg",
   },
   {
     title: "Himani – Client Video",
